@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Mapa OSM</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+
+<div id="map" style="height:500px"></div>
+
+<script>
+
+var map = L.map('map').setView([-19.74794676728616, -42.648878660100564], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+L.marker([-19.74794676728616, -42.648878660100564,])
+    .addTo(map)
+    .bindPopup("Ocorrência")
+    .openPopup();
+
+
+</script>
+
+</body>
+</html>
