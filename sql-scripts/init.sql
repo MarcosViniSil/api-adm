@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS tb_user (
 );
 
 
-CREATE TABLE IF NOT EXISTS tb_caracteristics (
+CREATE TABLE IF NOT EXISTS tb_characteristics (
   id          INT          NOT NULL AUTO_INCREMENT,
   habitat     VARCHAR(100),
   region      VARCHAR(100),
@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS tb_animal (
   animal_name             VARCHAR(100) NOT NULL,
   animal_imagem_url       VARCHAR(500),
   animal_color            VARCHAR(50),
-  animal_height           DECIMAL(5,2),
-  animal_weight           DECIMAL(7,2),
+  animal_height           VARCHAR(50),
+  animal_weight           VARCHAR(50),
   caracteristics_id INT        NOT NULL UNIQUE,
   PRIMARY KEY (id),
   FOREIGN KEY (caracteristics_id) REFERENCES tb_caracteristics(id)
@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS tb_question (
   answer_id                 INT          NOT NULL,
   answer_details            TEXT,
   animal_id                 INT          NOT NULL,
+  question_code             INT          NOT NULL UNIQUE,
   PRIMARY KEY (id),
   FOREIGN KEY (animal_id) REFERENCES tb_animal(id)  
 );

@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+from controller.userController import userRouter
+from controller.animalController import animalRouter
+
 
 app = FastAPI()
 
@@ -18,8 +21,8 @@ def root():
     return {"message": "working"}
 
 
-#app.include_router(router)
-#app.include_router(routerM)
+app.include_router(userRouter)
+app.include_router(animalRouter)
 #app.include_router(routerUserVideos)
 #app.include_router(userRouter)
 
