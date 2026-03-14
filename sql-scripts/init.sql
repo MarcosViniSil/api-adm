@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS tb_animal (
   animal_weight           VARCHAR(50),
   caracteristics_id INT        NOT NULL UNIQUE,
   PRIMARY KEY (id),
-  FOREIGN KEY (caracteristics_id) REFERENCES tb_caracteristics(id)
+  FOREIGN KEY (caracteristics_id) REFERENCES tb_characteristics(id)
+  ON DELETE CASCADE
 );
 
 
@@ -46,7 +47,8 @@ CREATE TABLE IF NOT EXISTS tb_question (
   animal_id                 INT          NOT NULL,
   question_code             INT          NOT NULL UNIQUE,
   PRIMARY KEY (id),
-  FOREIGN KEY (animal_id) REFERENCES tb_animal(id)  
+  FOREIGN KEY (animal_id) REFERENCES tb_animal(id)
+  ON DELETE CASCADE  
 );
 
 CREATE TABLE IF NOT EXISTS tb_user_answer (
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS tb_user_answer (
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES tb_user(id),
   FOREIGN KEY (question_id) REFERENCES tb_question(id)
+  ON DELETE CASCADE
 );
 
 CREATE INDEX idx_user_email ON tb_user(user_email);

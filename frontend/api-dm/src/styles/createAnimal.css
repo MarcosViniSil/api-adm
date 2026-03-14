@@ -1,0 +1,123 @@
+/* src/styles/createAnimal.css */
+
+.page-container {
+  min-height: 100vh;
+  background: #f4f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 720px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.form-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-grid input,
+.location-grid input {
+  padding: 11px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+.form-grid input:focus {
+  outline: none;
+  border-color: #6b7280;
+  background: white;
+}
+
+.form-full {
+  grid-column: span 2;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.submit-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #374151;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-button:hover {
+  background: #1f2937;
+}
+
+.image-preview {
+  display: block;
+  margin: 16px auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: 100%;
+}
+
+.markdown-field {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.markdown-field textarea {
+  min-height: 100px;
+  resize: vertical;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-family: monospace;
+  background: #fafafa;
+}
+
+.markdown-preview {
+  border: 1px solid #e5e7eb;
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}

@@ -11,3 +11,19 @@ animalRouter = APIRouter()
 async def create_animal(registerAnimal:RegisterAnimal,animalService: AnimalService = Depends(getAnimalService)):
     return animalService.createAnimal(registerAnimal)
 
+@animalRouter.get("/animals")
+async def get_animals(offset:int,animalService: AnimalService = Depends(getAnimalService)):
+    return animalService.getAnimals(offset)
+
+@animalRouter.get("/animal/characteristics")
+async def get_animal_characteristics(animalId:int,animalService: AnimalService = Depends(getAnimalService)):
+    return animalService.getAnimalCharacteristics(animalId)
+
+@animalRouter.get("/animals/location")
+async def get_animals_location(offset:int,animalService: AnimalService = Depends(getAnimalService)):
+    return animalService.getAnimalsLocation(offset)
+
+@animalRouter.delete("/animal")
+async def delete_animal(animalId:int,animalService: AnimalService = Depends(getAnimalService)):
+    return animalService.deleteAnimalById(animalId)
+
