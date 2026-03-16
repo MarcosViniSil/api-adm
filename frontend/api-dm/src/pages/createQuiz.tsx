@@ -6,10 +6,8 @@ import type { AnimalNameAndId } from "../models/animal";
 import { useEffect } from "react";
 import type { Question, QuizRequest } from "../models/question";
 import { createQuiz } from "../services/quizService";
-import { useNavigate } from "react-router-dom";
 
 const CreateQuiz: React.FC = () => {
-  const navigate = useNavigate();
 
   const [statement, setStatement] = useState("");
   const [possibilities, setPossibilities] = useState("");
