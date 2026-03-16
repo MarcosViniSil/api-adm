@@ -134,6 +134,44 @@ class AnimalRepository:
         except Exception as e:
             print(e)
             raise ValueError("Erro deletar animal", e)
+    
+    def getAnimalNameAndId(self) -> dict:
+        self.Db.createConnection()
+
+        sql = """
+            SELECT MIN(id) AS id,MIN(animal_name) AS name 
+            FROM tb_animal 
+            GROUP BY animal_name;   
+        """
+        try:
+            self.Db.myCursor.execute(sql,())
+            row = self.Db.myCursor.fetchall()
+            self.Db.myDb.commit()
+            self.Db.closeConnection()
+            
+            return row
+
+        except Exception as e:
+            print(e)
+            raise ValueError("Erro buscar animais", e)
+    
+    def isAnimalExists(self,animalId:int) -> dict:
+        self.Db.createConnection()
+
+        sql = """
+            SELECT EXISTS(SELECT 1 FROM tb_animal WHERE id = %s);  
+        """
+        try:
+            self.Db.myCursor.execute(sql,(animalId,))
+            row = self.Db.myCursor.fetchone()
+            self.Db.myDb.commit()
+            self.Db.closeConnection()
+            
+            return row
+
+        except Exception as e:
+            print(e)
+            raise ValueError("Erro verificar se animal existe", e)
         
         
     

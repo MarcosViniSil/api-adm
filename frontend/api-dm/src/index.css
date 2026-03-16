@@ -1,0 +1,20 @@
+nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.linkTo{
+    text-decoration: none;
+    font-size: large;
+    color: white;
+    background-color: #374151;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.linkTo:hover{
+    background-color: #657287;
+}

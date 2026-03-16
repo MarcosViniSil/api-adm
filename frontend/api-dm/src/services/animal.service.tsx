@@ -7,6 +7,7 @@ export async function createAnimal(animal:CreateAnimalModel) {
     try {
         const response = await fetch(`${API_URL}/animal`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -16,6 +17,26 @@ export async function createAnimal(animal:CreateAnimalModel) {
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData?.detail || "Erro ao realizar login de usuário");
+        }
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getAnimalNameAndId() {
+    try {
+        const response = await fetch(`${API_URL}/animal/details`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData?.detail || "Erro ao buscar dados dos animais");
         }
 
         return response.json();

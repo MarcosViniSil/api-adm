@@ -52,4 +52,22 @@ class UserRepository:
         except Exception as e:
             print(e)
             raise ValueError("Erro ao verificar dados para login", e)
+    
+    def getUserId(self, userEmail:str) -> None:
+        self.Db.createConnection()
+
+        sql = """
+                SELECT id FROM tb_user WHERE user_email = %s; 
+        """
+        try:
+            self.Db.myCursor.execute(sql, (userEmail,))
+            row = self.Db.myCursor.fetchone()
+            self.Db.myDb.commit()
+            self.Db.closeConnection()
+
+            return row
+
+        except Exception as e:
+            print(e)
+            raise ValueError("Erro ao obter id do usuário", e)
         

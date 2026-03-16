@@ -1,0 +1,83 @@
+{
+  "animal": {
+    "name": "Mico-leão-dourado",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Golden_Lion_Tamarin_Leontopithecus_rosalia.jpg/250px-Golden_Lion_Tamarin_Leontopithecus_rosalia.jpg",
+    "color": "Dourado-alaranjado",
+    "height": "20–33 cm (corpo), cauda até 40 cm",
+    "weight": "500–700 g"
+  },
+  "characteristics": {
+    "habitat": "Florestas tropicais úmidas de baixa altitude",
+    "region": "América do Sul",
+    "practice": "Diurno e arborícola; vive em grupos sociais e passa a maior parte do tempo nas árvores",
+    "habits": "Alimenta-se principalmente de frutas, insetos, pequenos vertebrados, ovos e néctar",
+    "location": {
+      "latitude": -22.5,
+      "longitude": -42.3
+    },
+    "location_description": "Mata Atlântica no estado do Rio de Janeiro, Brasil, especialmente em reservas como a Reserva Biológica de Poço das Antas"
+  }
+}
+
+{
+  "animal": {
+    "name": "Onça-pintada",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG/330px-Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG",
+    "color": "Amarelo-dourado com manchas pretas (rosetas)",
+    "height": "63–76 cm (altura no ombro)",
+    "weight": "56–96 kg"
+  },
+  "characteristics": {
+    "habitat": "Florestas tropicais, pantanais, savanas e áreas próximas a rios",
+    "region": "América Central e América do Sul",
+    "practice": "Predador solitário, excelente nadador e caçador oportunista",
+    "habits": "Alimenta-se de capivaras, jacarés, veados, tatus, peixes e outros animais; costuma caçar ao entardecer ou à noite",
+    "location": {
+      "latitude": -16.5,
+      "longitude": -56.0
+    },
+    "location_description": "Pantanal brasileiro, uma das maiores áreas de ocorrência da onça-pintada no mundo"
+  }
+}
+
+{
+  "animal": {
+    "name": "Preguiça-de-coleira",
+    "image_url": "https://scx1.b-cdn.net/csz/news/800a/2025/scientists-find-signs.jpg",
+    "color": "Marrom-acinzentado",
+    "height": "50–75 cm",
+    "weight": "4–10 kg"
+  },
+  "characteristics": {
+    "habitat": "Florestas tropicais úmidas",
+    "region": "América do Sul",
+    "practice": "Arborícola e extremamente lenta; passa a maior parte do tempo pendurada em árvores",
+    "habits": "Herbívora; alimenta-se principalmente de folhas, brotos e frutos, com metabolismo muito lento",
+    "location": {
+      "latitude": -15.5,
+      "longitude": -39.3
+    },
+    "location_description": "Mata Atlântica do leste do Brasil, especialmente nos estados da Bahia, Espírito Santo e Rio de Janeiro"
+  }
+}
+
+{
+  "animal": {
+    "name": "Muriqui-do-sul",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Brachyteles_arachnoides.jpg/330px-Brachyteles_arachnoides.jpg",
+    "color": "Marrom-claro a marrom-acinzentado",
+    "height": "70–90 cm (corpo), cauda preênsil de até 80 cm",
+    "weight": "10–15 kg"
+  },
+  "characteristics": {
+    "habitat": "Florestas tropicais da Mata Atlântica",
+    "region": "Sudeste do Brasil",
+    "practice": "Arborícola, altamente social e utiliza a cauda preênsil para se locomover entre as árvores",
+    "habits": "Alimenta-se principalmente de folhas, frutos, flores e brotos; vive em grandes grupos e tem comportamento pacífico",
+    "location": {
+      "latitude": -20.4,
+      "longitude": -41.0
+    },
+    "location_description": "Regiões preservadas da Mata Atlântica no sudeste do Brasil, como áreas do Espírito Santo, Rio de Janeiro, Minas Gerais e São Paulo"
+  }
+}

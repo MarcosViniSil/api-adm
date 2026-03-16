@@ -3,7 +3,7 @@ import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from controller.userController import userRouter
 from controller.animalController import animalRouter
-
+from controller.quizController import quizRouter
 
 app = FastAPI()
 
@@ -23,7 +23,7 @@ def root():
 
 app.include_router(userRouter)
 app.include_router(animalRouter)
-#app.include_router(routerUserVideos)
+app.include_router(quizRouter)
 #app.include_router(userRouter)
 
 if __name__ == "__main__":

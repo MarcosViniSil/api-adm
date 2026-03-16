@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from fastapi import HTTPException
 import jwt
 from dotenv import load_dotenv
 load_dotenv()
@@ -31,16 +32,16 @@ def validateJwtToken(token: str) -> dict:
     try:
         SECRET_KEY = os.environ["KEY_JWT"] 
     except Exception as e:
-        raise ValueError("Não foi possível capturar chave para gerar o token")
+        raise HTTPException(status_code=401,detail="token não informado")
 
     algorithm = 'HS256'
     try:
         response = jwt.decode(token, SECRET_KEY, algorithms=[algorithm])
         return response
     except jwt.ExpiredSignatureError:
-        raise ValueError("Token expirado, realize o login novamente")
+         raise HTTPException(status_code=401,detail="token expirado")
     except jwt.InvalidTokenError:
-        raise ValueError("Token inválido, realize o login para gerar um token correto")
+         raise HTTPException(status_code=401,detail="token inválido")
 
 def createPayLoad(email:str) -> dict:
     payload = {

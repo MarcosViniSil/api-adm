@@ -1,20 +1,22 @@
 from fastapi import HTTPException
 import re
-from models.animal import Animal, AnimalCharacteristics, AnimalList, AnimalLocation, Characteristics, RegisterAnimal
+from models.animal import Animal, AnimalCharacteristics, AnimalList, AnimalLocation, AnimalNameAndId, Characteristics, RegisterAnimal
 from models.user import User, UserLogin
 from repository.animalRepository import AnimalRepository
 from security.hash import createHashForPassword,isPasswordEqualDB
 from security.jwtService import createJwtToken
+from service.userService import UserService
 
 class AnimalService:
 
-    def __init__(self,animalRepository:AnimalRepository):
+    def __init__(self,animalRepository:AnimalRepository,userService:UserService):
         self.animalRepository = animalRepository
+        self.userService = userService
 
-    
-    
-    def createAnimal(self, registerAnimal:RegisterAnimal):
-
+    def createAnimal(self, token:str,registerAnimal:RegisterAnimal):
+        
+        self.userService.getUserId(token)
+        
         self.validateAnimal(registerAnimal.animal)
         self.validateCharacteristics(registerAnimal.characteristics)
 
@@ -62,7 +64,8 @@ class AnimalService:
             print(e)
             raise HTTPException(status_code=400, detail="Ocorreu um erro ao buscar dados dos animais.")
     
-    def deleteAnimalById(self, animalId:int) -> dict:
+    def deleteAnimalById(self,token:str,animalId:int) -> dict:
+        self.userService.getUserId(token)
         if animalId <= 0:
             raise HTTPException(status_code=400, detail="Id deve ser maior que 0")
         
@@ -105,7 +108,37 @@ class AnimalService:
         except Exception as e:
             print(e)
             raise HTTPException(status_code=400, detail="Ocorreu um erro ao buscar dados do animal.")
+    
+    def getAnimalNameAndId(self) -> list[AnimalNameAndId]:
+        
+        try:
+            animals = self.animalRepository.getAnimalNameAndId()
+            animalsDetails = []
+            for animal in animals:
+                animalsDetails.append(AnimalNameAndId(id=animal[0],name=animal[1]))
+            
+            return animalsDetails
+        except Exception as e:
+            print(e)
+            raise HTTPException(status_code=400, detail="Ocorreu um erro ao buscar dados de animais.")
+    
 
+    def isAnimalIdExists(self,animalId) -> bool:
+        
+        if animalId <= 0:
+            raise HTTPException(status_code=400, detail="Id deve ser maior que 0.")
+
+        try:
+            row = self.animalRepository.isAnimalExists(animalId)   
+            if row is None or row[0] is None:         
+                raise HTTPException(status_code=400, detail="Ocorreu um erro ao verificar se amimal existe.")
+            
+            return row[0] == 1
+            
+        except Exception as e:
+            print(e)
+            raise HTTPException(status_code=400, detail="Ocorreu um erro ao verificar se animal existe.")
+        
     def validateAnimal(self, animal: Animal) -> None:
         if not animal.name.strip():
             raise HTTPException(status_code=400, detail="Nome vazio.")

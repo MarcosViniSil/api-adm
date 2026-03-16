@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response
 from uuid import UUID
 
 from models.dependencies import getUserService
@@ -13,5 +13,12 @@ async def create_user(user:User,userService: UserService = Depends(getUserServic
     return userService.createUser(user)
 
 @userRouter.post("/user/login")
-async def login_user(user:UserLogin,userService: UserService = Depends(getUserService)):
-    return userService.logInUser(user)
+async def login_user(user:UserLogin,response: Response,userService: UserService = Depends(getUserService)):
+    token = userService.logInUser(user)['token']
+    response.set_cookie(
+        key="access_token",
+        value=token,
+        httponly=True,
+        secure=True,
+        samesite="Strict"
+    )

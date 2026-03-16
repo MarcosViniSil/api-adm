@@ -5,3 +5,8 @@ export class Animal{
     height!:string
     weight!:string
 }
+
+export class AnimalNameAndId{
+    id!:number
+    name!:string
+}

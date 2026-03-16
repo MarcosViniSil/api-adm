@@ -64,3 +64,4 @@ CREATE TABLE IF NOT EXISTS tb_user_answer (
 );
 
 CREATE INDEX idx_user_email ON tb_user(user_email);
+CREATE INDEX idx_code_question ON tb_question(question_code);

@@ -38,9 +38,7 @@ const Login: React.FC = () => {
         return;
       }
       setIsFetching(true);
-      let token:string = await loginUser(createUserModel());
-      console.log(token)
-
+      await loginUser(createUserModel());
       sendSuccess("Login realizado com sucesso",-1)
     } catch (err) {
       console.log(err);

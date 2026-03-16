@@ -1,9 +1,11 @@
+import ast
+
 from fastapi import HTTPException
 import re
 from models.user import User, UserLogin
 from repository.userRepository import UserRepository
 from security.hash import createHashForPassword,isPasswordEqualDB
-from security.jwtService import createJwtToken
+from security.jwtService import createJwtToken, validateJwtToken
 
 ALLOWED_EMAILS = {"marcossilv203@gmail.com","marcosoliversv@gmail.com","leanderrxcampos@gmail.com","joaopedrofduarte.cefetmg@gmail.com"}
 
@@ -93,4 +95,22 @@ class UserService:
             raise HTTPException(status_code=400,detail="Senha não pode conter apenas espaços")
         
         if len(password) < 8 or len(password) > 30:
-            raise HTTPException(status_code=400,detail="Senha deve conter no mínimo 8 e no máximo 30 caracteres")   
+            raise HTTPException(status_code=400,detail="Senha deve conter no mínimo 8 e no máximo 30 caracteres")  
+    
+    def getUserId(self,token:str) -> bytes:
+         datas = None
+       
+         datas = validateJwtToken(token)
+
+   
+         if datas is None or datas["userEmail"] is None:
+             raise HTTPException(status_code=401,detail="token invalido")
+         userEmail = datas["userEmail"]
+       
+         try:
+             row = self.userRepository.getUserId(userEmail)
+             if row is None or row[0] is None:
+                 raise HTTPException(status_code=400,detail="erro ao consultar banco para validar usuário, dados nulos")
+             return row[0]
+         except Exception as e:
+             raise HTTPException(status_code=400,detail="Ocoreru um erro ao acessar banco de dados para obter token do usuário") 

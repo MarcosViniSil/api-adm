@@ -1,21 +1,21 @@
-import {UserLogin} from '../models/user'
+import type { QuizRequest } from '../models/question';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function loginUser(user:UserLogin) {
+export async function createQuiz(quiz:QuizRequest) {
     try {
-        const response = await fetch(`${API_URL}/user/login`, {
+        const response = await fetch(`${API_URL}/quiz`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include",
-            body: JSON.stringify(user),
+            body: JSON.stringify(quiz),
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData?.detail || "Erro ao realizar login de usuário");
+            throw new Error(errorData?.detail || "Erro ao realizar criação de questão");
         }
 
         return response.json();

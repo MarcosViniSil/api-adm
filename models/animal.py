@@ -47,3 +47,7 @@ class AnimalLocation(BaseModel):
     imageUrl:str
     location:Json
     locationDescription:str
+    
+class AnimalNameAndId(BaseModel):
+    id:int
+    name:str
