@@ -22,7 +22,7 @@ class UserService:
             raise HTTPException(status_code=400,detail="No momento não é possivel criar sua conta, pois o email não é permitido")
         
         try:
-            passwordHash = createHashForPassword(user.password)
+            passwordHash = createHashForPassword(str(user.password))
             user.password = passwordHash
         except Exception as e:
             print(e)
