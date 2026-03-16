@@ -25,7 +25,8 @@ class UserService:
             passwordHash = createHashForPassword(user.password)
             user.password = passwordHash
         except Exception as e:
-            raise HTTPException(status_code=400,detail="Ocorreu um erro ao validar senha, tente novamente")
+            print(e)
+            raise HTTPException(status_code=400,detail=f"Ocorreu um erro ao validar senha, tente novamente {e}")
 
         try:
             self.userRepository.createUser(user)
