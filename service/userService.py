@@ -6,6 +6,8 @@ from models.user import User, UserLogin
 from repository.userRepository import UserRepository
 from security.hash import createHashForPassword,isPasswordEqualDB
 from security.jwtService import createJwtToken, validateJwtToken
+import logging
+
 
 ALLOWED_EMAILS = {"marcossilv203@gmail.com","marcosoliversv@gmail.com","leanderrxcampos@gmail.com","joaopedrofduarte.cefetmg@gmail.com"}
 
@@ -15,14 +17,15 @@ class UserService:
         self.userRepository = userRepository
 
     def createUser(self,user:User) -> None:
-        
+        logging.warning("password ",user.password)
         self.isUserValid(user)
 
         if not user.email in ALLOWED_EMAILS:
             raise HTTPException(status_code=400,detail="No momento não é possivel criar sua conta, pois o email não é permitido")
         
         try:
-            passwordHash = createHashForPassword(str(user.password))
+            
+            passwordHash = createHashForPassword(user.password)
             user.password = passwordHash
         except Exception as e:
             print(e)

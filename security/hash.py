@@ -1,6 +1,7 @@
 import bcrypt
 
 def createHashForPassword(password:str) -> str:
+    print("password ",password)
     if password is None:
         raise ValueError(f"A senha não foi informada")
     
