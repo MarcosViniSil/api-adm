@@ -4,7 +4,7 @@ import { Toaster, toast } from "sonner";
 import { getAnimalNameAndId } from "../services/animal.service";
 import type { AnimalNameAndId } from "../models/animal";
 import { useEffect } from "react";
-import type { options, Question, QuizRequest } from "../models/question";
+import type { options, QuizRequest } from "../models/question";
 import { createQuiz } from "../services/quizService";
 
 const CreateQuiz: React.FC = () => {
