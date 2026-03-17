@@ -51,16 +51,15 @@ const CreateQuiz: React.FC = () => {
     let quiz:QuizRequest = {
         questionStatement:statement,
         questionPossibilities: JSON.stringify(options),
-        answerId:answer,
+        answerId:Number(answer),
         answerDetails:responseDetails,
-        animalId:animalId
+        animalId:Number(animalId)
     }
     console.log(quiz)
     await createQuiz(quiz)
     sendSuccess("Questão criada com sucesso",-1)
     setTimeout(() => {
         window.location.reload()
-
     },1500)
     } catch (err:any) {
       if(err.Error){

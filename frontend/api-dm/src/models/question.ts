@@ -5,7 +5,7 @@ export class Question{
 export class QuizRequest{
     questionStatement!:string
     questionPossibilities!:string
-    answerId!:Number
+    answerId!:number
     answerDetails!:string
-    animalId!:Number
+    animalId!:number
 }
