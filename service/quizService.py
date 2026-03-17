@@ -25,12 +25,12 @@ class QuizService:
         self.userService.getUserId(token)
         self.validateAnimal(quizRequest.animalId)
         self.validateStatement(quizRequest.questionStatement)
-        self.is_valid_json(quizRequest.questionPossibilities)
         self.validateAnswer(quizRequest.questionPossibilities,quizRequest.answerId)
         self.validateOptions(quizRequest.questionPossibilities)
-        
+        print(quizRequest.questionPossibilities)
         try:
-            quiz = Quiz(questionStatement=quizRequest.questionStatement,questionPossibilities=quizRequest.questionPossibilities,answerId=quizRequest.answerId,answerDetails=quizRequest.answerDetails,animalId=quizRequest.animalId,questionCode=self.generateCode())
+            quiz = Quiz(questionStatement=quizRequest.questionStatement,questionPossibilities=json.dumps(
+        [opt.model_dump() for opt in quizRequest.questionPossibilities]),answerId=quizRequest.answerId,answerDetails=quizRequest.answerDetails,animalId=quizRequest.animalId,questionCode=self.generateCode())
             self.quizRepository.createQuiz(quiz)
             return '{"message":"questao criada com sucesso"}'
         except Exception as e:
@@ -103,31 +103,15 @@ class QuizService:
         if not self.animalService.isAnimalIdExists(animalId):
             raise HTTPException(status_code=404, detail="O animal informado não existe.")
 
-    def is_valid_json(self,json_string: str) -> None:
-        try:
-            json.loads(json_string)
-        except json.decoder.JSONDecodeError:
-            raise HTTPException(status_code=404, detail="O json informado é inválido.")
-        except TypeError:
-            raise HTTPException(status_code=404, detail="O json informado é inválido.")
-    
-    def validateAnswer(self,json_string: str, responseId:int) -> None:
-        options:Json = json.loads(json_string)
-        for key in options:
-            if key['id'] == responseId:
+    def validateAnswer(self, options, responseId: int) -> None:
+        for opt in options:
+            if opt.id == responseId:
                 return
-        raise HTTPException(status_code=404, detail="A resposta informada não existe nas opções fornecidas.")
+        raise HTTPException(status_code=404, detail="A resposta informada não existe.")
     
-    
-    
-    def validateOptions(self,json_string: str) -> None:
-        options:Json = json.loads(json_string)
-        count = 0
-        for _ in options:
-            count += 1
-        
-        if count < 2:
-            raise HTTPException(status_code=404, detail="Só existe uma opção para ser respondida.Considere pelo menos 2.")
+    def validateOptions(self, options) -> None:
+        if len(options) < 2:
+            raise HTTPException(status_code=404, detail="Mínimo de 2 opções.")
     
     def generateCode(self) -> int:
         return random.randint(1000000, 9999999)

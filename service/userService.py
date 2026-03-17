@@ -48,6 +48,7 @@ class UserService:
         try:
             row = self.userRepository.getHashedPassword(user.email)
         except Exception as e:
+            print(e)
             raise HTTPException(status_code=400,detail="Ocorreu um erro ao verificar dados")
         
         if row is None or row[0] is None:

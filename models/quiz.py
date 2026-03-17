@@ -1,12 +1,17 @@
-from pydantic import BaseModel, Json
+from pydantic import BaseModel
+
+from typing import List
+
+class Option(BaseModel):
+    id: int
+    value: str
 
 class QuizRequest(BaseModel):
-    questionStatement:str
-    questionPossibilities:str
-    answerId:int
-    answerDetails:str
-    animalId:int
-
+    questionStatement: str
+    questionPossibilities: List[Option] 
+    answerId: int
+    answerDetails: str
+    animalId: int
 
 class Quiz(BaseModel):
     questionStatement:str
