@@ -56,6 +56,8 @@ const CreateQuiz: React.FC = () => {
         animalId:Number(animalId)
     }
     console.log(quiz)
+    console.log("QUIZ:", quiz)
+console.log("JSON:", JSON.stringify(quiz))
     await createQuiz(quiz)
     sendSuccess("Questão criada com sucesso",-1)
     setTimeout(() => {
