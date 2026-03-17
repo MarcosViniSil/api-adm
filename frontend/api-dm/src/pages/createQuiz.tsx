@@ -4,14 +4,14 @@ import { Toaster, toast } from "sonner";
 import { getAnimalNameAndId } from "../services/animal.service";
 import type { AnimalNameAndId } from "../models/animal";
 import { useEffect } from "react";
-import type { Question, QuizRequest } from "../models/question";
+import type { options, Question, QuizRequest } from "../models/question";
 import { createQuiz } from "../services/quizService";
 
 const CreateQuiz: React.FC = () => {
 
   const [statement, setStatement] = useState("");
-  const [possibilities, setPossibilities] = useState("");
-  const [options, setOptions] = useState<Question[]>([]);
+  const [possibilities, setPossibilities] = useState<string>("");
+  const [options, setOptions] = useState<options[]>([]);
   const [animalOptions, setAnimalOptions] = useState<AnimalNameAndId[]>([]);
   const [responseDetails, setResponseDetails] = useState("");
   const [isFetching, setIsFetching] = useState(false);
@@ -50,7 +50,7 @@ const CreateQuiz: React.FC = () => {
 
     let quiz:QuizRequest = {
         questionStatement:statement,
-        questionPossibilities: JSON.stringify(options),
+        questionPossibilities: options,
         answerId:Number(answer),
         answerDetails:responseDetails,
         animalId:Number(animalId)
@@ -79,7 +79,7 @@ const CreateQuiz: React.FC = () => {
   }, []);
 
   const addAlternative = (question: string) => {
-    let questionModel: Question = {
+    let questionModel: options = {
       id: questionCount,
       value: question,
     };
@@ -93,8 +93,7 @@ const CreateQuiz: React.FC = () => {
 
     console.log("aaaaa")
 
-    
-
+  
     setQuestionCount(questionCount + 1);
     setOptions([...options, questionModel]);
     setPossibilities("");
