@@ -55,14 +55,20 @@ const CreateQuiz: React.FC = () => {
         answerDetails:responseDetails,
         animalId:animalId
     }
+    console.log(quiz)
     await createQuiz(quiz)
     sendSuccess("Questão criada com sucesso",-1)
     setTimeout(() => {
         window.location.reload()
 
     },1500)
-    } catch (err) {
-      console.log(err);
+    } catch (err:any) {
+      if(err.Error){
+        console.log(err.Error)
+      }else{
+        console.log(err);
+      }
+      
       sendError(String(err), -1);
     } finally {
       setIsFetching(false);
