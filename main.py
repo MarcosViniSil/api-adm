@@ -8,13 +8,14 @@ from controller.quizController import quizRouter
 app = FastAPI()
 
 origins = [
-    "https://front-api-pmep2l0af-marcos-projects-eb2a4f4b.vercel.app",
+    "https://front-dm.vercel.app/",
+    "http://localhost:5173",
 ]
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=".*",
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,4 +32,4 @@ app.include_router(quizRouter)
 #app.include_router(userRouter)
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True,lifespan="on")
