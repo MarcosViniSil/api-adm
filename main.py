@@ -8,7 +8,7 @@ from controller.quizController import quizRouter
 app = FastAPI()
 
 origins = [
-    "https://front-dm.vercel.app/",
+    "https://front-dm.vercel.app",
     "http://localhost:5173",
 ]
 
