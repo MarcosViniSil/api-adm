@@ -20,5 +20,5 @@ async def login_user(user:UserLogin,response: Response,userService: UserService 
         value=token,
         httponly=True,
         secure=True,
-        samesite="Strict"
+        samesite="none"
     )
