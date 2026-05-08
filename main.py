@@ -7,16 +7,11 @@ from controller.quizController import quizRouter
 
 app = FastAPI()
 
-origins = [
-    "https://front-dm.vercel.app",
-    "http://localhost:5173",
-]
-
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

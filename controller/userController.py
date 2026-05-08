@@ -13,12 +13,16 @@ async def create_user(user:User,userService: UserService = Depends(getUserServic
     return userService.createUser(user)
 
 @userRouter.post("/user/login")
-async def login_user(user:UserLogin,response: Response,userService: UserService = Depends(getUserService)):
-    token = userService.logInUser(user)['token']
-    response.set_cookie(
-        key="access_token",
-        value=token,
-        httponly=True,
-        secure=True,
-        samesite="none"
-    )
+async def login_user(
+    user: UserLogin,
+    userService: UserService = Depends(getUserService)
+):
+
+    result = userService.logInUser(user)
+
+    token = result["token"]
+
+    return {
+        "access_token": token,
+        "token_type": "bearer"
+    }
