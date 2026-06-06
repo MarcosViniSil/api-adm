@@ -20,8 +20,8 @@ class UserService:
         logging.warning("password ",user.password)
         self.isUserValid(user)
 
-        if not user.email in ALLOWED_EMAILS:
-            raise HTTPException(status_code=400,detail="No momento não é possivel criar sua conta, pois o email não é permitido")
+        #if not user.email in ALLOWED_EMAILS:
+            #raise HTTPException(status_code=400,detail="No momento não é possivel criar sua conta, pois o email não é permitido")
         
         try:
             
